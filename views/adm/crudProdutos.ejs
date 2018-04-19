@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <%- include('../head') %>
+</head>
+<body>
+    <style>
+    .btn-floating{
+        padding: 18px 0px 16px 23px;
+        width: 66px;
+        border-radius: 100%;
+        background: red;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        z-index: 10;
+        
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none; /* Standard syntax */
+
+    }
+    a.btn-floating{
+        text-decoration: none;
+        color: white;
+    }
+    a.btn-floating:visited{
+        color: white;
+    }
+    </style>
+    <a href="#top" class="btn-floating red">
+        <i class="material-icons">keyboard_arrow_up</i>
+    </a>
+
+    <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">Perfil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="btnTabProdutos" href="#tabProdutos" role="tab" data-toggle="tab">Produtos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#references" role="tab" data-toggle="tab"></a>
+        </li>
+    </ul>
+    
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="profile">...</div>
+        <div role="tabpanel" class="tab-pane fade" id="tabProdutos">
+            <div class="d-flex flex-row">
+                <div class="p-2">
+                    <div class="img100"></div>
+                </div>
+                <div class="p-2">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Nome produto">
+                    </div>
+                    <input type="text" class="form-control" placeholder="Preço">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="button" class="btn btn-primary">Adicionar</button>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-end hr" style="height: 55px; ">
+                <h3>Cadastrados</h3>
+            </div>
+
+            <%
+            var produtos = [
+                {nome: 'Jack Daniels', preco: 99},
+                {nome: 'Heineken', preco: 9},
+                {nome: 'Budweiser', preco: 9},
+                {nome: 'Eisenbahn', preco: 9},
+                {nome: 'Johnnie Walker', preco: 99},
+                {nome: 'Amstel Pulse', preco: 9},
+                {nome: 'Absolut Citron', preco: 99},
+                {nome: 'Havana Club', preco: 99},
+                {nome: 'Tanqueray', preco: 99},
+                {nome: 'Quilmes Cristal', preco: 99}
+            ];
+            %>
+            <% for(prod of produtos){ %>
+                <div class="d-flex flex-row linhaProduto">
+                    <div class="p-2">
+                        <div class="img100"></div>
+                    </div>
+                    <div class="p-2">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Nome produto" value="<%=prod.nome%>">
+                        </div>
+                        <input type="text" class="form-control" placeholder="Preço" value="<%=prod.preco%>">
+                    </div>
+                </div>
+            <% } %>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="references">ccc</div>
+    </div>
+</body>
+
+<script>
+
+    document.querySelector('#btnTabProdutos').click();
+</script>
+
+</html>
