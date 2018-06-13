@@ -23,8 +23,16 @@ router.get('/', (req, res) => {
     res.render('index');
 });
 
+router.get('/cadastro', (req, res) => {
+	res.render('cadastro');
+});
+
 router.get('/adm/produtos', (req, res) => {
     res.render('adm/crudProdutos');
+});
+
+router.get('/atend/scan', (req, res) => {
+	res.render('atendente/scanCliente');
 });
 
 module.exports = {

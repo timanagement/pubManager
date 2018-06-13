@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../head') %>
+</head>
+
+<style>
+body{
+    font-family: 'calibri';
+    margin: 0;
+    background: linear-gradient(169deg,#f7d794,#966705)!important;
+    min-height: 100vh;
+}
+#nav{
+    /*background-color: #9c27b0;*/
+    width: 100%;
+    height: 40px;
+}
+#del{
+    /*padding-top: 20vh;*/
+    text-align: center;
+}
+#sc1{
+    width: 100%;
+}
+#linhasc1{
+    width: 100%;
+    height: 1px;
+    background-color: green;
+    transition: top 2s;
+    transition: bottom 2s;
+    position: absolute;
+}
+#areasc1{
+    width: 90%;
+    margin: auto;
+    position: relative;
+}
+#areasc1:hover ~ #linhasc1{
+    bottom: 0px;
+}
+#ffsc1{
+    width: 100px;
+    height: 100px;
+    background-color: #000000;
+    margin: auto;
+}
+
+#areaRes{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.text-center{
+    text-align: center;
+}
+
+textarea {
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    outline: none;
+    border: 1px solid transparent;
+    background: #d3d3d3;
+}
+</style>
+
+<script type="text/javascript" src="/js/lazar/grid.js"></script>
+<script type="text/javascript" src="/js/lazar/version.js"></script>
+<script type="text/javascript" src="/js/lazar/detector.js"></script>
+<script type="text/javascript" src="/js/lazar/formatinf.js"></script>
+<script type="text/javascript" src="/js/lazar/errorlevel.js"></script>
+<script type="text/javascript" src="/js/lazar/bitmat.js"></script>
+<script type="text/javascript" src="/js/lazar/datablock.js"></script>
+<script type="text/javascript" src="/js/lazar/bmparser.js"></script>
+<script type="text/javascript" src="/js/lazar/datamask.js"></script>
+<script type="text/javascript" src="/js/lazar/rsdecoder.js"></script>
+<script type="text/javascript" src="/js/lazar/gf256poly.js"></script>
+<script type="text/javascript" src="/js/lazar/gf256.js"></script>
+<script type="text/javascript" src="/js/lazar/decoder.js"></script>
+<script type="text/javascript" src="/js/lazar/qrcode.js"></script>
+<script type="text/javascript" src="/js/lazar/findpat.js"></script>
+<script type="text/javascript" src="/js/lazar/alignpat.js"></script>
+<script type="text/javascript" src="/js/lazar/databr.js"></script>
+
+<script src="/js/qrjuma.js"></script>
+
+<body>
+    <div id="nav"></div>
+    <div id="del">Escaneie o QR CODE</div>
+
+    <div id="areasc1">
+        <video id="sc1" autoplay></video>
+        <div id="linhasc1"></div>
+    </div>
+
+    <div id="areaRes">
+        <div class="text-center">Resultado</div>
+        <textarea id="res" rows="2"></textarea>
+    </div>
+</body>
+
+
+<script>
+    var tagVideoPronto = false;
+
+    document.querySelector('#linhasc1').style.bottom = '0px';
+
+    qrjuma.decode('#sc1', 2, (res) => {
+        document.querySelector('#res').value = res;
+
+        if (!tagVideoPronto) {
+            animaLinha();
+            setInterval("animaLinha()", 2 * 1000);
+        }
+
+        tagVideoPronto = true;
+    });
+
+    function animaLinha(){
+        var heightAreaVideo = document.querySelector('#areasc1').clientHeight;
+        var bottom = document.querySelector('#linhasc1').style.bottom;
+
+        if (bottom.substring(0, bottom.length-2) != heightAreaVideo) {
+            document.querySelector('#linhasc1').style.bottom = heightAreaVideo + 'px';
+        } else {
+            document.querySelector('#linhasc1').style.bottom = '0px';
+        }
+    }
+</script>
+
+</html>

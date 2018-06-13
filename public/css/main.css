@@ -1,0 +1,19 @@
+body{
+    font-family: 'calibri';
+    margin: 0;
+    /* background: linear-gradient(169deg,#f7d794,#966705)!important; */
+    background: #e2c17a;
+    min-height: 100vh;
+}
+
+/* correcoes uk-grid */
+.uk-grid {
+    margin-left: 0px;
+}
+.uk-grid>* {
+    padding-left: 0px;
+}
+
+.input100{
+    width: 100%;
+}
