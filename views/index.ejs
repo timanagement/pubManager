@@ -4,34 +4,30 @@
     <%- include('head') %>
 </head>
 <body>
-    <div class="uk-position-center uk-width-1-1">
-      <div class="uk-flex-center uk-width-1-1" uk-grid>
-        <div id="logo">
+  <div class="bgbody"></div>
+  <div class="wrapper">
+    <div class="header">
+			<div class="container-fluid">
+        <div class="row">
+          <div class="col col-xs-12 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 top100">
+            <div class="panel">
+              <div class="panel-body">
+                <h2 class="text-center">PubManager</h2>
+                <h3>Entrar</h3>
+                <form>
+                  <input class="form-control" type="text" placeholder="Usuário">
+                  <input class="form-control" type="password" placeholder="Senha">
+                  <button class="btn btn-warning btn-block" id="btnEntrar">Entrar</button>
+                </form>
+                <a href="/cadastro">
+                  <button class="btn btn-simple btn-warning">Cadastrar</button>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div style="float:none;">PubManager</div>
-      </div>
-      <div class="uk-flex-center uk-width-1-1" uk-grid>
-        <form>
-
-          <div class="uk-margin">
-            <div class="uk-inline input100">
-              <span class="uk-form-icon" uk-icon="icon: user"></span>
-              <input class="uk-input" placeholder="usuario">
-            </div>
-          </div>
-
-          <div class="uk-margin">
-            <div class="uk-inline input100">
-              <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-              <input class="uk-input" placeholder="senha">
-            </div>
-          </div>
-
-          <a class="uk-button uk-button-default uk-width-1-1" id="btnEntrar">Entrar</a>
-          <a class="uk-button uk-button-default uk-width-1-1" href="/cadastro">Cadastrar</a>
-  
-        </form>
       </div>
     </div>
+  </div>
 </body>
 </html>

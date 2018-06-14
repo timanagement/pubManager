@@ -36,3 +36,5 @@ io.use(function (socket, next) {
 
 io.sockets.on('connection', function (socket) {
 });
+
+require('./socket')(io);

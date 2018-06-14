@@ -1,19 +1,24 @@
-body{
-    font-family: 'calibri';
-    margin: 0;
-    /* background: linear-gradient(169deg,#f7d794,#966705)!important; */
-    background: #e2c17a;
-    min-height: 100vh;
-}
+.top5 { margin-top:5px; }
+.top7 { margin-top:7px; }
+.top10 { margin-top:10px; }
+.top15 { margin-top:15px; }
+.top17 { margin-top:17px; }
+.top30 { margin-top:30px; }
+.top100 { margin-top:100px; }
 
-/* correcoes uk-grid */
-.uk-grid {
-    margin-left: 0px;
-}
-.uk-grid>* {
-    padding-left: 0px;
-}
-
-.input100{
+.bgbody {
+    background: url('../img/beer.jpg');
+    background-size: auto 100vh;
+    height: 100vh;
     width: 100%;
+    position: absolute;
+    filter: blur(10px);
+    background-position: 478px 0px;
+}
+
+@media only screen and (min-width: 600px) {
+    /* For tablets: */
+    .bgbody {
+        background-position: 0px 0px;
+    }
 }
