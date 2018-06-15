@@ -27,6 +27,10 @@ router.get('/cadastro', (req, res) => {
 	res.render('cadastro');
 });
 
+router.get('/home', (req, res) => {
+	res.render('home');
+});
+
 router.get('/adm/produtos', (req, res) => {
     res.render('adm/crudProdutos');
 });
