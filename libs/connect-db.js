@@ -4,8 +4,7 @@ let db;
 
 module.exports = function(){
 	if(!db){
-		const PASSWORD = 'recosmart';
-		const DATABASE = 'recosmart';
+		const DATABASE = 'pub';
 		mongoose.Promise = global.Promise;
 		db = mongoose.connect(`mongodb://127.0.0.1:27017/${DATABASE}`);
 	}
