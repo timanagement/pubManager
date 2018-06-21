@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
 	} else {
 		var session = req.session;
 		cUsuarios.pesquisarPorId(session._id, (usuario) => {
-			res.render('home', {
+			res.render('cliente/home', {
 				usuario
 			});
 		});
@@ -70,10 +70,6 @@ router.get('/sair', function (req, res) {
 	req.session.destroy(function () {
 		res.redirect('/login');
 	});
-});
-
-router.get('/home', (req, res) => {
-	res.render('home');
 });
 
 router.get('/adm/produtos', (req, res) => {
