@@ -6,28 +6,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-warning navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="/">PubManager</a>
-				<button class="navbar-toggle collapsed pull-right" type="button" data-toggle="collapse" data-target="#menu-navbar-warning">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="collapse navbar-collapse" id="menu-navbar-warning">
-				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<a href="/historico">
-							<i class="material-icons">account_circle</i> Login
-						</a>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<%- include('navbar') %>
 
 	<!--<div class="bgbody"></div>-->
 	<div class="wrapper">
@@ -49,7 +28,7 @@
 					<div class="tab-content">
 						<div id="home" class="tab-pane fade">
 							<img class="center-block top10" src="img/qr.png" width="200px">
-							<h2 class="text-center">Raffa Moreira</h2>
+							<h2 class="text-center"><%- usuario.nome %>></h2>
 
 							<h3 class="text-center">7777-7777</h3>
 							<button class="btn btn-warning center-block-imp">Alterar</button>

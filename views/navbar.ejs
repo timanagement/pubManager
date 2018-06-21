@@ -1,0 +1,53 @@
+<nav class="navbar navbar-warning navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand">
+                PubManager
+            </a>
+
+            <button class="navbar-toggle collapsed pull-right" type="button" data-toggle="collapse" data-target="#menu-navbar-warning">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="visible-xs-block">
+                <% if (!usuario) { %>
+                    <a href="/login" class="text-light">
+                        <i class="material-icons">account_circle</i>
+                        Login
+                    </a>
+                <% } else { %>
+                    <div class="navbar-brand pull-right">
+                        <%- usuario.nome %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+
+        <div id="menu-navbar-warning" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <% if (!usuario) { %>
+                    <li>
+                        <a href="/login">
+                            <i class="material-icons">account_circle</i> Login
+                        </a>
+                    </li>
+                <% } else { %>
+                     <li>
+                        <a class="hidden-xs" href="/u/<%- usuario.nome %>">
+                            <%- usuario.nome %>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/sair">
+                            <i class="material-icons">exit_to_app</i>
+                            Sair
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>

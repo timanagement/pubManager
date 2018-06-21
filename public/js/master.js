@@ -7,10 +7,10 @@ $(document).ready(function () {
         validaBarraUsuario();
     });
     $('#formCadastroUsuario').submit(function (e) {
-        var nome = $('#formCadastroUsuario [name="nome"]').val();
-        var senha = $('#formCadastroUsuario [name="senha"]').val();
+        var nome = $('#formCadastroUsuario [name="nome"]').val().trim();
+        var senha = $('#formCadastroUsuario [name="senha"]').val().trim();
 
-        if (validaBarraUsuario()) {
+        if (validaBarraUsuario() && nome !== '' && senha !== '') {
             socket.emit('cadastroUsuario', { nome, senha });
         }
         e.preventDefault();
