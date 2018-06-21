@@ -8,60 +8,30 @@
 <body>
 	<%- include('navbar') %>
 
-	<!--<div class="bgbody"></div>-->
 	<div class="wrapper">
 		<div class="header">
 			<div class="container-fluid">
 				<div class="row top71">
 					<ul class="nav nav-tabs nav-yellow">
 						<li class="">
-							<a data-toggle="tab" href="#home">Perfil</a>
+							<a data-toggle="tab" href="#perfil">Perfil</a>
 						</li>
 						<li class="active">
-							<a data-toggle="tab" href="#menu1">Produtos</a>
+							<a data-toggle="tab" href="#produtos">Produtos</a>
 						</li>
 						<li>
-							<a data-toggle="tab" href="#menu2">Comanda</a>
+							<a data-toggle="tab" href="#comanda">Comanda</a>
 						</li>
 					</ul>
 
 					<div class="tab-content">
-						<div id="home" class="tab-pane fade">
-							<img class="center-block top10" src="img/qr.png" width="200px">
-							<h2 class="text-center"><%- usuario.nome %></h2>
-
-							<h3 class="text-center">7777-7777</h3>
-							<button class="btn btn-warning center-block-imp">Alterar</button>
+						<div id="perfil" class="tab-pane fade">
+							<%- include('perfil') %>
 						</div>
-						<div id="menu1" class="tab-pane fade in active">
-							<div class="container">
-								<div class="row">
-									<div class="col col-xs-10 col-xs-offset-1">
-										<input type="text" class="form-control" placeholder="Pesquisar Produto...">
-										
-										<div class="row">
-											
-                                            <%
-                                            for (var i = -1; i < 3; i++) {
-                                                %>
-                                                <div class="col col-xs-6 col-md-3">
-                                                    <div class="panel">
-                                                        <div class="panel-body">
-                                                            <img class="img-responsive center-block" src="img/asahi.jpg">
-                                                            Asahi
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <%
-                                            }
-                                            %>
-
-										</div>
-									</div>
-								</div>
-							</div>
+						<div id="produtos" class="tab-pane fade in active">
+							<%- include('produtos') %>
 						</div>
-						<div id="menu2" class="tab-pane fade">
+						<div id="comanda" class="tab-pane fade">
 
 						</div>
 					</div>
