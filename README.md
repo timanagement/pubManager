@@ -1,4 +1,4 @@
 # pubManager
 manager pub
 
-[template/demo](https://viniceosm.github.io/pubManager)
+[site estático](https://viniceosm.github.io/pubManager)
