@@ -3,6 +3,7 @@ const model = require('./../models/comandas')();
 const crud = {
     pesquisar: (query, callback) => {
         model.find(query, {})
+            .populate('produtos')
             .exec((err, comandas) => {
                 if (err) throw err;
                 callback(comandas);

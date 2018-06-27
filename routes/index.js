@@ -22,6 +22,7 @@ router.use(sessionMiddleware);
 const cUsuarios = require('./../mongo/controller/usuarios');
 const cProdutos = require('./../mongo/controller/produtos');
 const cComandas = require('./../mongo/controller/comandas');
+const cPedidos = require('./../mongo/controller/pedidos');
 
 router.get('/', (req, res) => {
 	var session = req.session;
@@ -52,11 +53,26 @@ router.get('/', (req, res) => {
 						res.render('porteiro/home', obj);
 					});
 				});
+			} else if (usuario.tipo == 3) {
+				cComandas.pesquisar({}, (comandas) => {
+					obj.comandas = comandas;
+					
+					res.render('caixa/home', obj);
+				});
 			} else if (usuario.tipo == 4) {
 				cProdutos.pesquisar({}, (produtos) => {
 					obj.produtos = produtos;
+					cUsuarios.pesquisar({}, (usuarios) => {
+						obj.usuarios = usuarios;
 
-					res.render('adm/home', obj);
+						res.render('adm/home', obj);
+					});
+				});
+			} else if (usuario.tipo == 5) {
+				cPedidos.pesquisar({}, (pedidos) => {
+					obj.pedidos = pedidos;
+
+					res.render('garcom/home', obj);
 				});
 			}
 		});
@@ -109,6 +125,27 @@ router.post('/addProduto', (req, res) => {
 	});
 });
 
+router.post('/addUsuario', (req, res) => {
+	var body = req.body;
+	cUsuarios.criar({
+		nome: body.nome,
+		senha: body.senha,
+		tipo: body.lstTipo
+	}, () => {
+		res.redirect('/');
+	});
+});
+
+router.post('/alteraUsuario', (req, res) => {
+	var body = req.body;
+	cUsuarios.alterar(session._id, {
+		nome: body.nome,
+		senha: body.senha
+	}, () => {
+		res.redirect('/');
+	});
+});
+
 router.post('/alteraProduto', (req, res) => {
 	var body = req.body;
 	cProdutos.alterar(body.idProduto, {
@@ -121,20 +158,22 @@ router.post('/alteraProduto', (req, res) => {
 router.post('/pedir', (req, res) => {
 	var body = req.body;
 	
-	if (Array.isArray(body.chkProdutos)) {
-		cComandas.adicionaProdutoComanda(body.txtComanda, body.chkProdutos, () => {
-			res.redirect('/');
-		});
-	} else if (typeof body.chkProdutos == 'string') {
-		cComandas.adicionaProdutoComanda(body.txtComanda, [body.chkProdutos], () => {
-			res.redirect('/');
-		});
+	if (typeof body.chkProdutos == 'string') {
+		body.chkProdutos = [body.chkProdutos];
 	}
 
-});
+	if (Array.isArray(body.chkProdutos)) {
+		cComandas.adicionaProdutoComanda(body.txtComanda, body.chkProdutos, () => {
+			cPedidos.criar({
+				id_usuario: session._id,
+				produtos: body.chkProdutos,
+				mesa: body.lstMesa
+			}, () => {
+				res.redirect('/');
+			});
+		});
 
-router.get('/adm/produtos', (req, res) => {
-    res.render('adm/crudProdutos');
+	}
 });
 
 router.get('/atend/scan', (req, res) => {

@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-xs-10 col-xs-offset-1">
+            <h3 class="text-center">Pedidos</h3>
+            <hr>
+
+            <div class="row">
+                <%
+                for (pedido of pedidos) {
+                    %>
+                    <div class="col col-xs-6 col-md-3">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <%= pedido.id_usuario.nome %><br>
+                                Mesa <%= pedido.mesa %><br>
+
+                                <ul>
+                                    <%
+                                    for (produto of pedido.produtos) {
+                                        %>
+                                        <li><%- produto.nome %></li>
+                                        <%
+                                    }
+                                    %>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                }
+                %>
+            </div>
+        </div>
+    </div>
+</div>

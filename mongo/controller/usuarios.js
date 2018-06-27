@@ -25,6 +25,15 @@ const crud = {
 			callback();
 		});
 	},
+	alterar: (produtoId, fields, callback) => {
+		crud.pesquisarPorId(produtoId, (produto) => {
+			Object.keys(fields).forEach((key) => {
+				produto[key] = fields[key];
+			});
+
+			produto.save((err, produtoAlterado) => callback(produto));
+		});
+	},
 	pesquisarPorId: (query, callback) => {
 		model.findById(query, (err, usuario) => {
 			if (err) throw err;

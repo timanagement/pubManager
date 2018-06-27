@@ -1,5 +1,18 @@
 <img class="center-block top10" src="img/qr.png" width="200px">
-<h2 class="text-center"><%- usuario.nome %></h2>
 
-<h3 class="text-center">7777-7777</h3>
-<button class="btn btn-warning center-block-imp">Alterar</button>
+<div class="col col-xs-6 col-md-2 col-md-offset-5">
+    <form id="formAlteraUsuario<%- usuario._id %>" action="/alteraUsuario" method="POST">
+        <div class="form-group label-floating">
+            <label class="control-label">Nome</label>
+            <input type="text" class="form-control" name="nome" id="nome<%- usuario._id %>" autocapitalize="off" value="<%- usuario.nome %>"/>
+        </div>
+
+        <div class="form-group label-floating">
+            <label class="control-label">Senha</label>
+            <input type="password" class="form-control" name="senha" id="senha<%- usuario._id %>" value="<%- usuario.senha %>"/>
+        </div>
+
+        <input type="hidden" name="idUsuario" value="<%- usuario._id %>"/>
+        <input type="submit" class="btn btn-warning center-block-imp" value="alterar">
+    </form>
+</div>

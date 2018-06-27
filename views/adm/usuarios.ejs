@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-xs-10 col-xs-offset-1">
+            <div class="row top10">
+                <div class="col col-xs-6 col-md-4 col-md-offset-4">
+                    <form id="formAdicionarUsuario" action="/addUsuario" method="POST">
+                        <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome Usuario" autocapitalize="off">
+                        <input type="password" class="form-control" name="senha" id="senha" placeholder="Senha Usuario">
+
+                        <select name="lstTipo" id="lstTipo" class="form-control">
+                            <option value="1">Cliente</option>
+                            <option value="2">Porteiro</option>
+                            <option value="3">Caixa</option>
+                            <option value="4">Adm</option>
+                            <option value="5">Garçom</option>
+                        </select>
+
+                        <input type="submit" class="btn btn-warning btn-block" value="adicionar">
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3 class="text-center">Cadastrados</h3>
+                <hr>
+                <%
+                for (usuario of usuarios) {
+                    %>
+                    <div class="col col-xs-6 col-md-3">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <form id="formAlteraUsuario<%- usuario._id %>" action="/alteraUsuario" method="POST">
+                                    <input type="text" class="form-control" name="nome" id="nome<%- usuario._id %>" autocapitalize="off" value="<%- usuario.nome %>"/>
+                                    <input type="password" class="form-control" name="senha" id="senha<%- usuario._id %>" value="<%- usuario.senha %>"/>
+                                    
+                                    <select name="lstTipo" id="lstTipo<%- usuario._id %>" class="form-control">
+                                        <option value="1">Cliente</option>
+                                        <option value="2">Porteiro</option>
+                                        <option value="3">Caixa</option>
+                                        <option value="4">Adm</option>
+                                        <option value="5">Garçom</option>
+                                    </select>
+                                    <script>
+                                        $('#lstTipo<%- usuario._id %>').val('<%- usuario.tipo %>');
+                                    </script>
+                                    
+                                    <input type="hidden" name="idUsuario" value="<%- usuario._id %>"/>
+                                    <input type="submit" class="btn btn-warning btn-xs btn-block" value="alterar">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                }
+                %>
+            </div>
+        </div>
+    </div>
+</div>

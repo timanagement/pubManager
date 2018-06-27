@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col col-xs-10 col-xs-offset-1">
             <div class="row top10">
-                <div class="col col-xs-6 col-md-3">
+                <div class="col col-xs-6 col-md-3 col-md-offset-2">
                     <div class="panel">
                         <div class="panel-body">
                             <img class="img-responsive center-block" src="img/asahi.jpg">
@@ -28,9 +28,9 @@
                     <div class="col col-xs-6 col-md-3">
                         <div class="panel">
                             <div class="panel-body">
-                                <form id="formAlteraProduto" action="/alteraProduto" method="POST">
+                                <form id="formAlteraProduto<%- produto._id %>" action="/alteraProduto" method="POST">
                                     <img class="img-responsive center-block" src="img/asahi.jpg"/>
-                                    <input type="text" class="form-control" name="nomeProduto" id="nomeProduto" value="<%- produto.nome %>"/>
+                                    <input type="text" class="form-control" name="nomeProduto" id="nomeProduto<%- produto._id %>" value="<%- produto.nome %>"/>
                                     <input type="hidden" name="idProduto" value="<%- produto._id %>"/>
                                     <input type="submit" class="btn btn-warning btn-xs btn-block" value="alterar">
                                 </form>

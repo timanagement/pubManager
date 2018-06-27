@@ -93,7 +93,7 @@ body {
 
 /* cliente produtos */
 #listaProdutos{
-    height: 400px;
+    height: 42vh;
     /* background: #fbc02d; */
     overflow: auto;
 }

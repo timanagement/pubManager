@@ -10,6 +10,7 @@ module.exports = function(){
 		 * 2 - Porteiro
 		 * 3 - Caixa
 		 * 4 - Adm
+		 * 5 - Garçom
 		 */
 		tipo: Number,
 		date: { type: Date, default: Date.now },
