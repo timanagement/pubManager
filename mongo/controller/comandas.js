@@ -38,13 +38,16 @@ const crud = {
     },
     adicionaProdutoComanda: (idComanda, produtos, callback) => {
         crud.pesquisarPorId(idComanda, (comanda) => {
+
+            let comandaAlterado;
+
             produtos.forEach((produto) => {
                 comanda.produtos.push(produto);
-                comanda.save();    
+                comanda.save((err, _comandaAlterado) => comandaAlterado = _comandaAlterado);
             });
             
             
-            comanda.save((err, comandaAlterado) => callback(comandaAlterado));
+            callback(comandaAlterado);
         });
     }
 }

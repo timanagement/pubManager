@@ -6,26 +6,32 @@
 
             <div class="row">
                 <%
-                for (pedido of pedidos) {
-                    %>
-                    <div class="col col-xs-12 col-md-3">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <%= pedido.id_usuario.nome %><br>
-                                Mesa <%= pedido.mesa %><br>
+                if(pedidos.length > 0) {
+                    for (pedido of pedidos) {
+                        %>
+                        <div class="col col-xs-12 col-md-3">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <%= pedido.id_usuario.nome %><br>
+                                    Mesa <%= pedido.mesa %><br>
 
-                                <ul>
-                                    <%
-                                    for (produto of pedido.produtos) {
-                                        %>
-                                        <li><%- produto.nome %></li>
+                                    <ul>
                                         <%
-                                    }
-                                    %>
-                                </ul>
+                                        for (produto of pedido.produtos) {
+                                            %>
+                                            <li><%- produto.nome %></li>
+                                            <%
+                                        }
+                                        %>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <%
+                    }
+                } else {
+                    %>
+                    <h4>Nenhum pedido!</h4>
                     <%
                 }
                 %>
