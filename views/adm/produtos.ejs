@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row">
+        <div class="col col-xs-10 col-xs-offset-1">
+            <div class="row top10">
+                <div class="col col-xs-6 col-md-3">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <img class="img-responsive center-block" src="img/asahi.jpg">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col col-xs-6 col-md-3">
+                    <form id="formAdicionarProduto" action="/addProduto" method="POST">
+                        <input type="text" class="form-control" name="nomeProduto" id="nomeProduto" placeholder="Nome Produto">
+
+                        <input type="submit" class="btn btn-warning btn-block" value="adicionar">
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3 class="text-center">Cadastrados</h3>
+                <hr>
+                <%
+                for (produto of produtos) {
+                    %>
+                    <div class="col col-xs-6 col-md-3">
+                        <div class="panel">
+                            <div class="panel-body">
+                                <form id="formAlteraProduto" action="/alteraProduto" method="POST">
+                                    <img class="img-responsive center-block" src="img/asahi.jpg"/>
+                                    <input type="text" class="form-control" name="nomeProduto" id="nomeProduto" value="<%- produto.nome %>"/>
+                                    <input type="hidden" name="idProduto" value="<%- produto._id %>"/>
+                                    <input type="submit" class="btn btn-warning btn-xs btn-block" value="alterar">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                }
+                %>
+            </div>
+        </div>
+    </div>
+</div>

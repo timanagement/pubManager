@@ -20,6 +20,7 @@ router.use(cookie);
 router.use(sessionMiddleware);
 
 const cUsuarios = require('./../mongo/controller/usuarios');
+const cProdutos = require('./../mongo/controller/produtos');
 
 router.get('/', (req, res) => {
 	var session = req.session;
@@ -28,8 +29,11 @@ router.get('/', (req, res) => {
 	} else {
 		var session = req.session;
 		cUsuarios.pesquisarPorId(session._id, (usuario) => {
-			res.render('cliente/home', {
-				usuario
+			cProdutos.pesquisar({}, (produtos) => {
+				res.render('cliente/home', {
+					usuario,
+					produtos
+				});
 			});
 		});
 	}
@@ -69,6 +73,24 @@ router.get('/logando', function (req, res) {
 router.get('/sair', function (req, res) {
 	req.session.destroy(function () {
 		res.redirect('/login');
+	});
+});
+
+router.post('/addProduto', (req, res) => {
+	var body = req.body;
+	cProdutos.criar({
+		nome: body.nomeProduto
+	}, () => {
+		res.redirect('/');
+	});
+});
+
+router.post('/alteraProduto', (req, res) => {
+	var body = req.body;
+	cProdutos.alterar(body.idProduto, {
+		nome: body.nomeProduto
+	}, () => {
+		res.redirect('/');
 	});
 });
 

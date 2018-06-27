@@ -22,6 +22,16 @@
 						<li>
 							<a data-toggle="tab" href="#comanda">Comanda</a>
 						</li>
+
+						<%
+						if (usuario.tipo == 4) { // ADM
+						%>
+						<li>
+							<a data-toggle="tab" href="#cadastrarprodutos">Cadastrar Produtos</a>
+						</li>
+						<%
+						}
+						%>
 					</ul>
 
 					<div class="tab-content">
@@ -34,6 +44,16 @@
 						<div id="comanda" class="tab-pane fade">
 
 						</div>
+
+						<%
+						if (usuario.tipo == 4) { // ADM
+						%>
+						<div id="cadastrarprodutos" class="tab-pane fade">
+							<%- include('../adm/produtos') %>
+						</div>
+						<%
+						}
+						%>
 					</div>
 				</div>
 			</div>
