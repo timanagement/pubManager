@@ -5,6 +5,7 @@ module.exports = function (_io) {
 
     io.sockets.on('connection', function (socket) {
         const cUsuarios = require('./mongo/controller/usuarios');
+        const cComandas = require('./mongo/controller/comandas');
 
         //index
         socket.on('cadastroUsuario', function (obj) {
@@ -24,6 +25,13 @@ module.exports = function (_io) {
                 } else {
                     socket.emit('erroCadastrarUsuario', 'Este usuário já existe.');
                 }
+            });
+        });
+
+        //Porteiro
+        socket.on('liberarComandaCliente', function (idCliente) {
+            cComandas.criar({ id_usuario: idCliente }, () => {
+                socket.emit('retornoLiberarComandaCliente');
             });
         });
     });

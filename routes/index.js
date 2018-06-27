@@ -21,6 +21,7 @@ router.use(sessionMiddleware);
 
 const cUsuarios = require('./../mongo/controller/usuarios');
 const cProdutos = require('./../mongo/controller/produtos');
+const cComandas = require('./../mongo/controller/comandas');
 
 router.get('/', (req, res) => {
 	var session = req.session;
@@ -29,12 +30,35 @@ router.get('/', (req, res) => {
 	} else {
 		var session = req.session;
 		cUsuarios.pesquisarPorId(session._id, (usuario) => {
-			cProdutos.pesquisar({}, (produtos) => {
-				res.render('cliente/home', {
-					usuario,
-					produtos
+			let obj = {
+				usuario,
+			};
+			
+			if (usuario.tipo == 1) {
+				cProdutos.pesquisar({}, (produtos) => {
+					cComandas.pesquisar({ id_usuario: session._id }, (comandas) => {
+						obj.produtos = produtos;
+						obj.comandas = comandas;
+						
+						res.render('cliente/home', obj);
+					});
 				});
-			});
+			} else if (usuario.tipo == 2) {
+				cProdutos.pesquisar({}, (produtos) => {
+					obj.produtos = produtos;
+					cUsuarios.pesquisar({ tipo: 1 }, (clientes) => {
+						obj.clientes = clientes;
+
+						res.render('porteiro/home', obj);
+					});
+				});
+			} else if (usuario.tipo == 4) {
+				cProdutos.pesquisar({}, (produtos) => {
+					obj.produtos = produtos;
+
+					res.render('adm/home', obj);
+				});
+			}
 		});
 	}
 });
@@ -92,6 +116,21 @@ router.post('/alteraProduto', (req, res) => {
 	}, () => {
 		res.redirect('/');
 	});
+});
+
+router.post('/pedir', (req, res) => {
+	var body = req.body;
+	
+	if (Array.isArray(body.chkProdutos)) {
+		cComandas.adicionaProdutoComanda(body.txtComanda, body.chkProdutos, () => {
+			res.redirect('/');
+		});
+	} else if (typeof body.chkProdutos == 'string') {
+		cComandas.adicionaProdutoComanda(body.txtComanda, [body.chkProdutos], () => {
+			res.redirect('/');
+		});
+	}
+
 });
 
 router.get('/adm/produtos', (req, res) => {

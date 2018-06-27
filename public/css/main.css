@@ -84,6 +84,21 @@ body {
     transition-duration: 0.3s;
 }
 
+[id^='panel_prod_']:hover {
+    cursor: pointer;
+}
+[id^='panel_prod_'].selecionado {
+    background-color: #ecffd9;
+}
+
+/* cliente produtos */
+#listaProdutos{
+    height: 400px;
+    /* background: #fbc02d; */
+    overflow: auto;
+}
+
+
 @media only screen and (min-width: 600px) {
     /* For tablets: */
     .bgbody {

@@ -33,3 +33,28 @@ function validaBarraUsuario() {
     }
     return valido;
 }
+
+function liberarComandaCliente(idCliente) {
+    socket.emit('liberarComandaCliente', idCliente);
+}
+
+socket.on('retornoLiberarComandaCliente', function () {
+    location.href = '/';
+});
+
+function clickChkProduto(evt, idProduto) {
+    $('#chk_' + idProduto).click();
+
+    var soma = 0;
+    $('[id^=chk_]:checked').each(function(i, elem) {
+        soma += parseFloat($(elem).attr('preco'));
+    })
+    
+    if ($('#chk_' + idProduto)[0].checked) {
+        $('#panel_prod_' + idProduto).addClass('selecionado');
+    } else {
+        $('#panel_prod_' + idProduto).removeClass('selecionado');
+    }
+
+    $('#txtTotalPreco').text(soma);
+}

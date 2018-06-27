@@ -1,26 +1,60 @@
 <div class="container">
     <div class="row">
         <div class="col col-xs-10 col-xs-offset-1">
-            <input type="text" class="form-control" placeholder="Pesquisar Produto...">
-            
-            <div class="row">
-                
-                <%
-                for (produto of produtos) {
-                    %>
-                    <div class="col col-xs-6 col-md-3">
-                        <div class="panel">
-                            <div class="panel-body">
-                                <img class="img-responsive center-block" src="img/asahi.jpg">
-                                <%- produto.nome %>
-                            </div>
-                        </div>
-                    </div>
-                    <%
-                }
+            <%
+            if (comandas.length != 0) {
                 %>
+                <input type="text" class="form-control" placeholder="Pesquisar Produto...">
 
-            </div>
+                <form action="/pedir" method="POST">
+                    <div class="row" id="listaProdutos">
+                        <%
+                        for (produto of produtos) {
+                            %>
+                            <div class="col col-xs-6 col-md-3">
+                                <div class="panel" id="panel_prod_<%- produto._id %>" onclick="clickChkProduto(event, '<%- produto._id %>')">
+                                    <div class="panel-body">
+                                        <img class="img-responsive center-block" src="img/asahi.png">
+
+                                        <div class="pull-left">
+                                            <%- produto.nome %>
+                                        </div>
+                                        <div class="checkbox pull-right hide">
+                                            <label>
+                                                <input type="checkbox" id="chk_<%- produto._id %>" name="chkProdutos" value="<%- produto._id %>" preco="50">
+                                                </input>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <%
+                        }
+                        %>
+                    </div>
+
+                    <div class="row">
+                        <h4>Total preço: <span id="txtTotalPreco">0</span></h4>
+                        <select name="lstMesa" id="lstMesa" class="form-control" required>
+                            <option value="">Escolha a mesa</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+
+                        <input type="hidden" name="txtComanda" value="<%- comandas[0]._id %>">
+
+                        <button type="submit" class="btn btn-warning">Pedir</button>
+                    </div>
+                </form>
+            <%
+            } else {
+                %>
+                <div class="row">
+                    <h3 class="text-center">Nenhuma comanda em aberto ainda!</h3>
+                </div>
+                <%
+            }
+            %>
         </div>
     </div>
 </div>
