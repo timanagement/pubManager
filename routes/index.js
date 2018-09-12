@@ -47,6 +47,7 @@ router.get('/', (req, res) => {
 			} else if (usuario.tipo == 2) {
 				cProdutos.pesquisar({}, (produtos) => {
 					obj.produtos = produtos;
+					// Porteiro busca por usuario do tipo 1, que são clientes
 					cUsuarios.pesquisar({ tipo: 1 }, (clientes) => {
 						obj.clientes = clientes;
 
@@ -158,6 +159,7 @@ router.post('/alteraProduto', (req, res) => {
 router.post('/pedir', (req, res) => {
 	var body = req.body;
 	
+	// Se for uma string transforma a String em uma Array com essa String dentro
 	if (typeof body.chkProdutos == 'string') {
 		body.chkProdutos = [body.chkProdutos];
 	}
