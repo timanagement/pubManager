@@ -30,6 +30,7 @@ app.get('*', function (req, res) {
 	res.render('notFound');
 });
 
+// Middleware para o socket ter o request
 io.use(function (socket, next) {
 	routesIndex.sessionMiddleware(socket.request, socket.request.res, next);
 });
