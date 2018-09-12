@@ -22,6 +22,7 @@ socket.on('retornoCadastroUsuario', function () {
 });
 
 socket.on('erroCadastrarUsuario', function (data) {
+    // Mostra o problema de não ter cadastrado
     $('#msgValUsuario').html(data);
 });
 
@@ -43,6 +44,7 @@ socket.on('retornoLiberarComandaCliente', function () {
 });
 
 function clickChkProduto(evt, idProduto) {
+    // Dá click no checkbox para marcar ou desmarcá-lo
     $('#chk_' + idProduto).click();
 
     var soma = 0;
