@@ -13,6 +13,7 @@
                 <div class="col col-xs-6 col-md-3">
                     <form id="formAdicionarProduto" action="/addProduto" method="POST">
                         <input type="text" class="form-control" name="nomeProduto" id="nomeProduto" placeholder="Nome Produto">
+                        <input type="text" class="form-control" name="precoProduto" id="precoProduto" placeholder="Preco">
 
                         <input type="submit" class="btn btn-warning btn-block" value="adicionar">
                     </form>
@@ -31,8 +32,13 @@
                                 <form id="formAlteraProduto<%- produto._id %>" action="/alteraProduto" method="POST">
                                     <img class="img-responsive center-block" src="img/asahi.jpg"/>
                                     <input type="text" class="form-control" name="nomeProduto" id="nomeProduto<%- produto._id %>" value="<%- produto.nome %>"/>
+                                    <input type="text" class="form-control" name="precoProduto" id="precoProduto<%- produto._id %>" value="<%- produto.preco %>"/>
                                     <input type="hidden" name="idProduto" value="<%- produto._id %>"/>
                                     <input type="submit" class="btn btn-warning btn-xs btn-block" value="alterar">
+                                </form>
+                                <form action="/excluiProduto" method="POST">
+                                    <input type="hidden" name="idProduto" value="<%- produto._id %>" />
+                                    <input type="submit" class="btn btn-danger btn-xs btn-block" value="excluir">
                                 </form>
                             </div>
                         </div>

@@ -119,7 +119,8 @@ router.get('/sair', function (req, res) {
 router.post('/addProduto', (req, res) => {
 	var body = req.body;
 	cProdutos.criar({
-		nome: body.nomeProduto
+		nome: body.nomeProduto,
+		preco: body.precoProduto
 	}, () => {
 		res.redirect('/');
 	});
@@ -149,8 +150,16 @@ router.post('/alteraUsuario', (req, res) => {
 router.post('/alteraProduto', (req, res) => {
 	var body = req.body;
 	cProdutos.alterar(body.idProduto, {
-		nome: body.nomeProduto
+		nome: body.nomeProduto,
+		preco: body.precoProduto
 	}, () => {
+		res.redirect('/');
+	});
+});
+
+router.post('/excluiProduto', (req, res) => {
+	var body = req.body;
+	cProdutos.excluir(body.idProduto, null, () => {
 		res.redirect('/');
 	});
 });
