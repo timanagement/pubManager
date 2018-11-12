@@ -24,6 +24,12 @@ const crud = {
             produto.save((err, produtoAlterado) => callback(produto));
         });
     },
+    excluir: (produtoId, fields, callback) => {
+        crud.pesquisarPorId(produtoId, (produto) => {
+
+            produto.remove((err, produtoExcluido) => callback(produto));
+        });
+    },
     pesquisarPorId: (query, callback) => {
         model.findById(query, (err, usuario) => {
             if (err) throw err;

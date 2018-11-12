@@ -6,6 +6,7 @@ module.exports = function(){
 		nome: String,
 		descricao: String,
 		imagem: String,
+		preco: Number,
 		date: { type: Date, default: Date.now },
 		status: { type: Boolean, default: true }
 	}, { collection: 'produto' }));

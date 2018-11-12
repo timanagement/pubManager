@@ -1,6 +1,6 @@
 # pubManager
 manager pub	
 
-[site est√°tico](https://viniceosm.github.io/pubManager)
+[site est·tico](https://viniceosm.github.io/pubManager)
 
-![beer](https://github.com/viniceosm/pubManager/blob/master/public/img/icon192.jpg?raw=true)
+[trello](https://trello.com/b/ZOi8OyUA/pubmanager)

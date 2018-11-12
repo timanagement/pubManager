@@ -9,25 +9,31 @@
                 <form action="/pedir" method="POST">
                     <div class="row" id="listaProdutos">
                         <%
-                        for (produto of produtos) {
-                            %>
-                            <div class="col col-xs-6 col-md-3">
-                                <div class="panel" id="panel_prod_<%- produto._id %>" onclick="clickChkProduto(event, '<%- produto._id %>')">
-                                    <div class="panel-body">
-                                        <img class="img-responsive center-block" src="img/asahi.png">
+                        if (produtos.length > 0) {
+                            for (produto of produtos) {
+                                %>
+                                <div class="col col-xs-12 col-md-3">
+                                    <div class="panel" id="panel_prod_<%- produto._id %>" onclick="clickChkProduto(event, '<%- produto._id %>')">
+                                        <div class="panel-body">
+                                            <img class="img-responsive center-block" src="img/asahi.png">
 
-                                        <div class="pull-left">
-                                            <%- produto.nome %>
-                                        </div>
-                                        <div class="checkbox pull-right hide">
-                                            <label>
-                                                <input type="checkbox" id="chk_<%- produto._id %>" name="chkProdutos" value="<%- produto._id %>" preco="50">
-                                                </input>
-                                            </label>
+                                            <div class="pull-left">
+                                                <%- produto.nome %>
+                                            </div>
+                                            <div class="checkbox pull-right hide">
+                                                <label>
+                                                    <input type="checkbox" id="chk_<%- produto._id %>" name="chkProdutos" value="<%- produto._id %>" preco="50">
+                                                    </input>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <%
+                            }
+                        } else {
+                            %>
+                            <h4>Sem produto cadastrado!</h4>
                             <%
                         }
                         %>
