@@ -8,6 +8,10 @@ const SECRET = 'seeeeeeeeeeeegredoo';
 const cookie = cookieParser(SECRET);
 let store = new sessions.MemoryStore();
 
+// const MongoStore = require('connect-mongo')(express);
+// let db = require('./../libs/connect-db')();
+// let store = new MongoStore({ mongooseConnection: db.connection });
+
 let sessionMiddleware = sessions({
 	secret: SECRET,
 	name: KEY,
@@ -34,13 +38,13 @@ router.get('/', (req, res) => {
 			let obj = {
 				usuario,
 			};
-			
+
 			if (usuario.tipo == 1) {
 				cProdutos.pesquisar({}, (produtos) => {
 					cComandas.pesquisar({ id_usuario: session._id }, (comandas) => {
 						obj.produtos = produtos;
 						obj.comandas = comandas;
-						
+
 						res.render('cliente/home', obj);
 					});
 				});
@@ -57,7 +61,7 @@ router.get('/', (req, res) => {
 			} else if (usuario.tipo == 3) {
 				cComandas.pesquisar({}, (comandas) => {
 					obj.comandas = comandas;
-					
+
 					res.render('caixa/home', obj);
 				});
 			} else if (usuario.tipo == 4) {
@@ -167,7 +171,7 @@ router.post('/excluiProduto', (req, res) => {
 
 router.post('/pedir', (req, res) => {
 	var body = req.body;
-	
+
 	// Se for uma string transforma a String em uma Array com essa String dentro
 	if (typeof body.chkProdutos == 'string') {
 		body.chkProdutos = [body.chkProdutos];
