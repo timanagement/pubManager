@@ -6,16 +6,18 @@ const cookieParser = require('cookie-parser');
 const KEY = 'chaaaaaaaaaaaave';
 const SECRET = 'seeeeeeeeeeeegredoo';
 const cookie = cookieParser(SECRET);
-let store = new sessions.MemoryStore();
 
-// const MongoStore = require('connect-mongo')(express);
-// let db = require('./../libs/connect-db')();
-// let store = new MongoStore({ mongooseConnection: db.connection });
+// let store = new sessions.MemoryStore();
+
+const MongoStore = require('connect-mongo')(sessions);
+let { mongoose, db } = require('./../libs/connect-db')();
+// let store = new MongoStore({ mongooseConnection: mongoose.connection });
+let store = new MongoStore({ mongooseConnection: db });
 
 let sessionMiddleware = sessions({
 	secret: SECRET,
 	name: KEY,
-	resave: true,
+	resave: false,
 	saveUninitialized: true,
 	store: store
 });
