@@ -49,7 +49,7 @@ function clickChkProduto(evt, idProduto) {
 
     var soma = 0;
     $('[id^=chk_]:checked').each(function(i, elem) {
-        soma += parseFloat($(elem).attr('preco'));
+        soma += parseFloat($(elem).data('preco'));
     })
     
     if ($('#chk_' + idProduto)[0].checked) {

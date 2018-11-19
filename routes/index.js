@@ -125,7 +125,6 @@ router.post('/addProduto', (req, res) => {
 	var body = req.body;
 	cProdutos.criar({
 		nome: body.nomeProduto,
-		descricao: descricaoProduto,
 		preco: body.precoProduto,
 		quantidade: body.quantidadeProduto
 	}, () => {
@@ -158,7 +157,6 @@ router.post('/alteraProduto', (req, res) => {
 	var body = req.body;
 	cProdutos.alterar(body.idProduto, {
 		nome: body.nomeProduto,
-		descricao: body.descricaoProduto,
 		preco: body.precoProduto,
 		quantidade: body.quantidadeProduto
 	}, () => {
