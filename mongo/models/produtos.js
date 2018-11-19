@@ -4,7 +4,6 @@ module.exports = function(){
 
 	return db.model('produto', Schema({
 		nome: String,
-		descricao: String,
 		imagem: String,
 		preco: Number,
 		quantidade: Number,
